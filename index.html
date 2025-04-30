@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -97,10 +98,15 @@
             position: relative;
         }
         
-        .hero-logo {
-            max-width: 300px;
-            margin-bottom: 2rem;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            width: 50%;
+            position: relative;
+            background: linear-gradient(to right, rgba(13,26,52,0.8) 50%, transparent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: white;
         }
         
         .hero p {
@@ -510,10 +516,6 @@
             .timeline-marker {
                 display: none;
             }
-            
-            .hero-logo {
-                max-width: 200px;
-            }
         }
     </style>
 </head>
@@ -539,7 +541,7 @@
     
     <section class="hero">
         <div class="container">
-            <img src="paperclublogo.png" alt="LHS Paper Trading Club Logo" class="hero-logo">
+            <h1>LHS Paper Trading Club</h1>
             <p>Master the market through quantitative methods, technical analysis, and coding – a modern approach to financial literacy</p>
             <a href="#join" class="btn">Join Our Club</a>
         </div>
