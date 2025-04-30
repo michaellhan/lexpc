@@ -1,0 +1,83 @@
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { BarChart2, TrendingUp, Users } from "lucide-react";
+
+export default function PaperClubHome() {
+  return (
+    <div className="min-h-screen bg-gray-50 px-6 py-12 text-gray-900">
+      <header className="max-w-5xl mx-auto mb-12 text-center">
+        <h1 className="text-4xl font-bold mb-2">Lexington High School Paper Club</h1>
+        <p className="text-lg text-gray-600">
+          Learn trading through math, code, and competition.
+        </p>
+      </header>
+
+      <main className="max-w-6xl mx-auto grid gap-8 md:grid-cols-2">
+        <Card className="shadow-md">
+          <CardContent className="p-6">
+            <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2">
+              <BarChart2 className="text-blue-500" /> Executive Summary
+            </h2>
+            <p>
+              A paper trading club at LHS focused on using quantitative methods and
+              technical analysis to explore financial markets in a collaborative and
+              competitive setting.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="shadow-md">
+          <CardContent className="p-6">
+            <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2">
+              <TrendingUp className="text-green-500" /> What We Do
+            </h2>
+            <p>
+              We start by teaching market basics, then dive into the math and code
+              behind indicators. Members compete in private and public paper
+              trading competitions for prizes and prestige.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="shadow-md">
+          <CardContent className="p-6">
+            <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2">
+              <Users className="text-purple-500" /> Our Audience
+            </h2>
+            <p>
+              Designed for bright LHS students into coding and math—especially those
+              looking for a chill, non-toxic alternative to traditional math and CS clubs.
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="shadow-md">
+          <CardContent className="p-6">
+            <h2 className="text-2xl font-semibold mb-2">Why Join?</h2>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Learn to code custom trading indicators</li>
+              <li>Understand real-world finance and technical analysis</li>
+              <li>Compete in trading events and win rewards</li>
+              <li>Build your portfolio and skills in a friendly environment</li>
+            </ul>
+          </CardContent>
+        </Card>
+      </main>
+
+      <section className="max-w-3xl mx-auto mt-16 text-center">
+        <h2 className="text-2xl font-bold mb-4">Allen's Journey</h2>
+        <p className="text-gray-700">
+          Allen Huang, a talented but disillusioned math team member, discovers
+          the LHS Paper Club and finds a refreshing, supportive space to learn,
+          trade, and grow. With competitions, encouragement, and hands-on coding,
+          he rediscovers his passion for learning.
+        </p>
+      </section>
+
+      <footer className="mt-16 text-center text-sm text-gray-500">
+        &copy; {new Date().getFullYear()} Lexington High School Paper Club
+      </footer>
+    </div>
+  );
+}
