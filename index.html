@@ -1,83 +1,794 @@
-import React from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { BarChart2, TrendingUp, Users } from "lucide-react";
-
-export default function PaperClubHome() {
-  return (
-    <div className="min-h-screen bg-gray-50 px-6 py-12 text-gray-900">
-      <header className="max-w-5xl mx-auto mb-12 text-center">
-        <h1 className="text-4xl font-bold mb-2">Lexington High School Paper Club</h1>
-        <p className="text-lg text-gray-600">
-          Learn trading through math, code, and competition.
-        </p>
-      </header>
-
-      <main className="max-w-6xl mx-auto grid gap-8 md:grid-cols-2">
-        <Card className="shadow-md">
-          <CardContent className="p-6">
-            <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-              <BarChart2 className="text-blue-500" /> Executive Summary
-            </h2>
-            <p>
-              A paper trading club at LHS focused on using quantitative methods and
-              technical analysis to explore financial markets in a collaborative and
-              competitive setting.
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-md">
-          <CardContent className="p-6">
-            <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-              <TrendingUp className="text-green-500" /> What We Do
-            </h2>
-            <p>
-              We start by teaching market basics, then dive into the math and code
-              behind indicators. Members compete in private and public paper
-              trading competitions for prizes and prestige.
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-md">
-          <CardContent className="p-6">
-            <h2 className="text-2xl font-semibold mb-2 flex items-center gap-2">
-              <Users className="text-purple-500" /> Our Audience
-            </h2>
-            <p>
-              Designed for bright LHS students into coding and math—especially those
-              looking for a chill, non-toxic alternative to traditional math and CS clubs.
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="shadow-md">
-          <CardContent className="p-6">
-            <h2 className="text-2xl font-semibold mb-2">Why Join?</h2>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Learn to code custom trading indicators</li>
-              <li>Understand real-world finance and technical analysis</li>
-              <li>Compete in trading events and win rewards</li>
-              <li>Build your portfolio and skills in a friendly environment</li>
-            </ul>
-          </CardContent>
-        </Card>
-      </main>
-
-      <section className="max-w-3xl mx-auto mt-16 text-center">
-        <h2 className="text-2xl font-bold mb-4">Allen's Journey</h2>
-        <p className="text-gray-700">
-          Allen Huang, a talented but disillusioned math team member, discovers
-          the LHS Paper Club and finds a refreshing, supportive space to learn,
-          trade, and grow. With competitions, encouragement, and hands-on coding,
-          he rediscovers his passion for learning.
-        </p>
-      </section>
-
-      <footer className="mt-16 text-center text-sm text-gray-500">
-        &copy; {new Date().getFullYear()} Lexington High School Paper Club
-      </footer>
-    </div>
-  );
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LHS Paper Trading Club</title>
+    <style>
+        :root {
+            --primary: #1a2b40;
+            --secondary: #2e5080;
+            --accent: #50c878;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .logo-icon {
+            background-color: var(--accent);
+            color: var(--primary);
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(26,43,64,0.9), rgba(26,43,64,0.8)), url("/api/placeholder/1200/500") center/cover no-repeat;
+            color: white;
+            padding: 8rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #3daa63;
+            transform: translateY(-2px);
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .feature-icon {
+            background-color: rgba(80,200,120,0.1);
+            color: var(--accent);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .about {
+            background-color: #f1f5f9;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-img {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .timeline-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+        }
+        
+        .timeline-marker {
+            position: relative;
+            width: 30px;
+        }
+        
+        .timeline-marker::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background-color: var(--accent);
+            z-index: -1;
+        }
+        
+        .timeline-marker .dot {
+            background-color: var(--accent);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .testimonials {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .testimonials .section-title h2,
+        .testimonials .section-title p {
+            color: white;
+        }
+        
+        .testimonials .section-title p {
+            opacity: 0.8;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .testimonial-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+        }
+        
+        .author-info p {
+            opacity: 0.7;
+            font-size: 0.875rem;
+        }
+        
+        .chart-section {
+            background-color: white;
+        }
+        
+        .chart-container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .chart-header h3 {
+            color: var(--primary);
+            font-size: 1.25rem;
+        }
+        
+        .chart-header .stats {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-transform: uppercase;
+        }
+        
+        .chart {
+            width: 100%;
+            height: 300px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .chart-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, rgba(80,200,120,0.2));
+            clip-path: polygon(
+                0% 80%,
+                10% 70%,
+                20% 85%,
+                30% 60%,
+                40% 50%,
+                50% 65%,
+                60% 45%,
+                70% 40%,
+                80% 30%,
+                90% 20%,
+                100% 35%,
+                100% 100%,
+                0% 100%
+            );
+        }
+        
+        .chart-path {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 3;
+            stroke-linecap: round;
+        }
+        
+        .cta {
+            text-align: center;
+            background-color: #1a2b40;
+            color: white;
+            padding: 6rem 0;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .social-proof {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .social-proof-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.6;
+        }
+        
+        footer {
+            background-color: #0f1a2a;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .timeline-marker {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon">P</div>
+                    <div>LHS Paper Trading</div>
+                </div>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#program">Program</a>
+                    <a href="#journey">Student Journey</a>
+                    <a href="#join">Join Us</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>LHS Paper Trading Club</h1>
+            <p>Master the market through quantitative methods, technical analysis, and coding – a modern approach to financial literacy</p>
+            <a href="#join" class="btn">Join Our Club</a>
+        </div>
+    </section>
+    
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Our Club</h2>
+                <p>Learn, trade, and compete in a supportive environment designed for math and coding enthusiasts</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Quantitative Trading at LHS</h3>
+                    <p>The Lexington High School Paper Trading Club offers a unique opportunity to explore financial markets using a quantitative approach. We combine mathematical concepts with technical analysis to help students develop practical trading skills.</p>
+                    <p>Our club provides a supportive and engaging environment where students can learn about trading markets, develop coding skills, and participate in exciting paper trading competitions – all without the financial risk.</p>
+                    <a href="#program" class="btn">Explore Our Program</a>
+                </div>
+                <div class="about-img">
+                    <img src="/api/placeholder/550/400" alt="Students participating in the Paper Trading Club">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="program">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Program</h2>
+                <p>A comprehensive curriculum that bridges financial markets, mathematics, and coding</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Market Fundamentals</h3>
+                    <p>Learn the basics of financial markets, including different asset classes, market structure, and fundamental concepts that drive price movements.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧮</div>
+                    <h3>Quantitative Methods</h3>
+                    <p>Explore mathematical concepts and statistical techniques used to analyze market data and make informed trading decisions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>Coding & Indicators</h3>
+                    <p>Develop programming skills to build custom trading indicators and algorithms that automate analysis and strategy implementation.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Trading Competitions</h3>
+                    <p>Test your skills in regular paper trading competitions with rewards for top performers, fostering friendly competition among members.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Technical Analysis</h3>
+                    <p>Master traditional chart patterns, indicators, and price action techniques that professional traders use to identify market opportunities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Advanced Challenges</h3>
+                    <p>Tackle more complex trading scenarios and develop sophisticated strategies for interested students who want to push their skills further.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="chart-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>The Quantitative Edge</h2>
+                <p>Combining mathematical precision with market intuition</p>
+            </div>
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3>Performance Dashboard</h3>
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="stat-value">+21%</div>
+                            <div class="stat-label">Avg. Return</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">36</div>
+                            <div class="stat-label">Members</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value">12</div>
+                            <div class="stat-label">Competitions</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart">
+                    <div class="chart-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="journey" class="journey">
+        <div class="container">
+            <div class="section-title">
+                <h2>Student Journey</h2>
+                <p>Follow Allen's path from math team burnout to trading champion</p>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="dot"></span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>The Starting Point</h3>
+                        <p>Allen Huang, a sophomore LHS Math Team member, becomes disgruntled with the toxic academic culture. He's looking for a challenging but more supportive environment.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="dot"></span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Discovery</h3>
+                        <p>Allen learns about the LHS Paper Club through fellow student Michael Han. Intrigued by the combination of math and finance, he verifies the information on Instagram.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="dot"></span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>First Meeting</h3>
+                        <p>Attending his first club meeting, Allen is impressed by the encouraging culture and fascinated by the mathematical concepts behind paper trading.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="dot"></span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Engagement</h3>
+                        <p>Allen continues attending meetings, drawn in by the paper trading competitions and the practical application of mathematical concepts.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker">
+                        <span class="dot"></span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Growth</h3>
+                        <p>Using the skills learned in the club, Allen develops his own trading strategies and begins to excel in the competitions, finding a new passion at the intersection of math and finance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Student Voices</h2>
+                <p>Hear what our members have to say about their experience</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "The Paper Trading Club gave me a chance to apply my math skills in a real-world context. The competitions are challenging but fun, and I've learned so much about financial markets."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/50/50" alt="Student">
+                        <div class="author-info">
+                            <h4>Allen H.</h4>
+                            <p>Sophomore, Math Enthusiast</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "I was always interested in coding but never knew how to apply it to finance. Learning to code indicators and analyze market data has opened up a whole new world for me."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/50/50" alt="Student">
+                        <div class="author-info">
+                            <h4>Sophia L.</h4>
+                            <p>Junior, Coding Club Member</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "The supportive environment makes a huge difference. We can explore complex concepts without the competitive pressure I've felt in other academic clubs."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="/api/placeholder/50/50" alt="Student">
+                        <div class="author-info">
+                            <h4>Ethan K.</h4>
+                            <p>Senior, Competition Winner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="join" class="cta">
+        <div class="container">
+            <h2>Join LHS Paper Trading Club</h2>
+            <p>Take your first step toward mastering the markets with mathematical precision and a supportive community</p>
+            <a href="#" class="btn">Sign Up Now</a>
+            <div class="social-proof">
+                <div class="social-proof-item">
+                    <span>📍</span>
+                    <span>Room 445</span>
+                </div>
+                <div class="social-proof-item">
+                    <span>🕒</span>
+                    <span>Thursdays, 3:15 PM</span>
+                </div>
+                <div class="social-proof-item">
+                    <span>📱</span>
+                    <span>@lhs_papertrading</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>LHS Paper Trading</h3>
+                    <p>A student-led club focused on quantitative trading methods and financial literacy at Lexington High School.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#program">Our Program</a></li>
+                        <li><a href="#journey">Student Journey</a></li>
+                        <li><a href="#join">Join Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Learning Materials</a></li>
+                        <li><a href="#">Competition Schedule</a></li>
+                        <li><a href="#">Trading Platforms</a></li>
+                        <li><a href="#">Coding Resources</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Email: papertrading@lexingtonhs.org</a></li>
+                        <li><a href="#">Instagram: @lhs_papertrading</a></li>
+                        <li><a href="#">Room 445, Lexington High School</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lexington High School Paper Trading Club. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
