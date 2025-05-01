@@ -197,33 +197,42 @@
             position: relative;
         }
         
+        .about .container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Align container content to the right */
+        }
+        
         .about .section-title {
             text-align: right;
             margin-right: 0;
             padding-right: 0;
+            width: 100%; /* Ensure full width but right-aligned content */
         }
         
         .about .section-title h2 {
             color: white;
+            text-align: right;
         }
         
         .about .section-title p {
             color: rgba(255,255,255,0.8);
             margin-right: 0;
+            margin-left: auto; /* Push to the right */
+            text-align: right;
         }
         
         .about-content {
-            text-align: right;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            margin-right: 0;
-            padding-right: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end; /* Align all content to the right */
+            width: 100%;
         }
         
         .about-text {
             text-align: right;
             max-width: 550px;
+            margin-left: auto; /* This pushes the block to the right */
             margin-right: 0;
             padding-right: 0;
         }
@@ -245,6 +254,11 @@
             padding-right: 0;
         }
         
+        .about-text .btn {
+            float: right; /* This will align the button to the right */
+            clear: both;
+        }
+
         .timeline {
             display: flex;
             flex-direction: column;
