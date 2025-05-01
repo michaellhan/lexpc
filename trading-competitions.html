@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Competitions - LHS Paper Trading Club</title>
+    <style>
+        :root {
+            --primary: #0d1a34;
+            --secondary: #0d1a34;
+            --accent: #bb8a04;
+            --light: #e6e0d8;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'TT Ramillas', Georgia, serif;
+        }
+        
+        @font-face {
+            font-family: 'TT Ramillas';
+            src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/webfonts/fa-solid-900.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .page-header {
+            background: linear-gradient(to right, rgba(13,26,52,0.9), rgba(13,26,52,0.3)), url("trophypic.jpg") center/cover no-repeat;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #3daa63;
+            transform: translateY(-2px);
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .content-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .content-section h3 {
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .content-section p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-section ul, 
+        .content-section ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .example-box {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .example-box h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .cta-box {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .cta-box h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .cta-box p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .related-topics {
+            margin-top: 4rem;
+        }
+        
+        .related-topics h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .topic-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .topic-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .topic-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background-color: #0f1a2a;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="coinlogo.png" alt="LHS Paper Trading Logo" width="32" height="32">
+                    </div>
+                    <a href="index.html" style="text-decoration: none; color: white;">LEXINGTON PAPER CLUB</a>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#program">Program</a>
+                    <a href="index.html#founders">Our Team</a>
+                    <a href="index.html#join">Join Us</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="page-header">
+        <div class="container">
+            <h1>Trading Competitions</h1>
+            <p>Test your skills in regular paper trading competitions with rewards for top performers, fostering friendly competition among members.</p>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <div class="content-section">
+                <h2>Learn by Competing</h2>
+                <p>Trading competitions are the beating heart of our club, where theory meets practice in an exciting, risk-free environment. These structured challenges allow members to test their trading strategies, learn from both successes and failures, and measure their progress against peers. Our competition program is designed to be educational, engaging, and rewarding for participants at all skill levels.</p>
+                
+                <h3>Competition Structure</h3>
+                <p>Our trading competitions follow a carefully designed structure to maximize learning while keeping the experience fun and challenging:</p>
+                
+                <ul>
+                    <li><strong>Regular Schedules</strong> - Weekly mini-competitions and monthly major challenges to accommodate different time commitments.</li>
+                    <li><strong>Varied Timeframes</strong> - From day trading sprints to longer-term investment simulations to develop different skills.</li>
+                    <li><strong>Starting Capital</strong> - Equal virtual funding for all participants ensures a level playing field.</li>
+                    <li><strong>Realistic Conditions</strong> - Simulated trading environments with real-time market data, realistic commissions, and slippage.</li>
+                    <li><strong>Transparent Leaderboards</strong> - Live rankings updated regularly to track performance throughout the competition.</li>
+                </ul>
+                
+                <div class="example-box">
+                    <h4>Example: Monthly Stock Challenge</h4>
+                    <p>Our flagship monthly competition follows this format:</p>
+                    <p>- Four-week duration with $100,000 in virtual capital</p>
+                    <p>- Access to all US equities and ETFs during market hours</p>
+                    <p>- Maximum position size of 20% of portfolio in any single security</p>
+                    <p>- Performance measured by total return, risk-adjusted metrics, and consistency</p>
+                    <p>- Weekly progress reports and strategy discussions during club meetings</p>
+                    <p>- End-of-competition presentation from top performers to share insights</p>
+                </div>
+                
+                <h3>Competition Categories</h3>
+                <p>We offer a variety of competition formats to develop different trading skills and accommodate diverse interests:</p>
+                
+                <ul>
+                    <li><strong>Stock Trading</strong> - Focused on equities markets with various timeframes from day trading to swing trading.</li>
+                    <li><strong>Options Challenge</strong> - Advanced competitions for members interested in derivatives trading strategies.</li>
+                    <li><strong>Sector-Specific</strong> - Targeted competitions limited to specific sectors (tech, healthcare, energy, etc.).</li>
+                    <li><strong>Market Condition Challenges</strong> - Special competitions designed around specific market environments (high volatility, trending, ranging).</li>
+                    <li><strong>Algorithm Battles</strong> - For coding-focused members to test their automated trading systems against each other.</li>
+                </ul>
+                
+                <h3>Learning Framework</h3>
+                <p>Our competitions are structured as learning experiences with educational components integrated throughout:</p>
+                
+                <ol>
+                    <li><strong>Pre-Competition Workshops</strong> - Preparation sessions to help members develop strategies specific to each competition format.</li>
+                    <li><strong>Trading Journals</strong> - Required documentation of trading decisions and rationales throughout the competition.</li>
+                    <li><strong>Mid-Competition Reviews</strong> - Checkpoint discussions to analyze market conditions and adjust strategies.</li>
+                    <li><strong>Post-Competition Analysis</strong> - Detailed review of performance metrics, successful strategies, and lessons learned.</li>
+                    <li><strong>Peer Learning</strong> - Opportunities for top performers to share insights and for all members to discuss their approaches.</li>
+                </ol>
+                
+                <div class="example-box">
+                    <h4>Example: Learning Through Analysis</h4>
+                    <p>After each major competition, members complete a structured analysis of their performance:</p>
+                    <p>- Statistical review of trades (win rate, average win/loss, profit factor, etc.)</p>
+                    <p>- Identification of what worked well and what didn't</p>
+                    <p>- Comparison of intended strategy versus actual execution</p>
+                    <p>- Emotion and psychology assessment</p>
+                    <p>- Development of specific action items for improvement</p>
+                    <p>These analyses are compiled into a club-wide "lessons learned" document that becomes a valuable resource for all members.</p>
+                </div>
+                
+                <h3>Rewards and Recognition</h3>
+                <p>While the primary goal is learning, we incentivize participation and excellence through various rewards:</p>
+                
+                <ul>
+                    <li>Recognition certificates and trophies for top performers</li>
+                    <li>Trading books and educational resources as prizes</li>
+                    <li>Opportunities to lead workshops and share strategies</li>
+                    <li>Cumulative point system tracking performance across multiple competitions</li>
+                    <li>End-of-year awards for most improved trader, most consistent performer, and most innovative strategy</li>
+                </ul>
+                
+                <div class="cta-box">
+                    <h3>Put Your Skills to the Test</h3>
+                    <p>Our trading competitions provide the perfect environment to apply what you've learned, develop your own unique trading style, and connect with fellow traders in a dynamic, educational setting.</p>
+                    <a href="index.html#join" class="btn">Join the Club</a>
+                </div>
+            </div>
+            
+            <div class="related-topics">
+                <h3>Related Topics</h3>
+                <div class="topic-cards">
+                    <div class="topic-card">
+                        <h4>Technical Analysis</h4>
+                        <p>Learn chart reading techniques that will give you an edge in trading competitions.</p>
+                        <a href="technical-analysis.html">Learn More →</a>
+                    </div>
+                    <div class="topic-card">
+                        <h4>Quantitative Methods</h4>
+                        <p>Apply mathematical strategies to improve your performance in competitive trading scenarios.</p>
+                        <a href="quantitative-methods.html">Learn More →</a>
+                    </div>
+                    <div class="topic-card">
+                        <h4>Advanced Challenges</h4>
+                        <p>Ready for more? Take on sophisticated trading problems in our advanced program.</p>
+                        <a href="advanced-challenges.html">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>LHS Paper Trading</h3>
+                    <p>A student-led club focused on quantitative trading methods and financial literacy at Lexington High School.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#program">Our Program</a></li>
+                        <li><a href="index.html#founders">Our Team</a></li>
+                        <li><a href="index.html#join">Join Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Program Topics</h3>
+                    <ul>
+                        <li><a href="market-fundamentals.html">Market Fundamentals</a></li>
+                        <li><a href="quantitative-methods.html">Quantitative Methods</a></li>
+                        <li><a href="coding-indicators.html">Coding & Indicators</a></li>
+                        <li><a href="technical-analysis.html">Technical Analysis</a></li>
+                        <li><a href="trading-competitions.html">Trading Competitions</a></li>
+                        <li><a href="advanced-challenges.html">Advanced Challenges</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Email: lhspaperclub@gmail.com</a></li>
+                        <li><a href="#">Instagram: @lhs_papertrading</a></li>
+                        <li><a href="#">Room 445, Lexington High School</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lexington High School Paper Trading Club. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
