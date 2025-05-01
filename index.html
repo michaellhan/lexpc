@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -192,36 +191,39 @@
         }
         
         .about {
-            background-color: #f1f5f9;
+            background: linear-gradient(to right, rgba(13,26,52,0.9), rgba(13,26,52,0.3)), url("tvfront2.png") center/cover no-repeat;
+            color: white;
+            padding: 6rem 0;
+            position: relative;
+        }
+        
+        .about .section-title h2 {
+            color: white;
+        }
+        
+        .about .section-title p {
+            color: rgba(255,255,255,0.8);
         }
         
         .about-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            max-width: 600px;
         }
         
         .about-text h3 {
             font-size: 2rem;
-            color: var(--primary);
+            color: white;
             margin-bottom: 1.5rem;
         }
         
         .about-text p {
             margin-bottom: 1.5rem;
-        }
-        
-        .about-img {
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
-        }
-        
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
+            color: rgba(255,255,255,0.9);
         }
         
         .timeline {
@@ -559,9 +561,6 @@
                     <p>The Lexington High School Paper Trading Club offers a unique opportunity to explore financial markets using a quantitative approach. We combine mathematical concepts with technical analysis to help students develop practical trading skills.</p>
                     <p>Our club provides a supportive and engaging environment where students can learn about trading markets, develop coding skills, and participate in exciting paper trading competitions – all without the financial risk.</p>
                     <a href="#program" class="btn">Explore Our Program</a>
-                </div>
-                <div class="about-img">
-                    <img src="tvfront.png" alt="Students participating in the Paper Trading Club">
                 </div>
             </div>
         </div>
