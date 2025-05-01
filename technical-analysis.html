@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Analysis - LHS Paper Trading Club</title>
+    <style>
+        :root {
+            --primary: #0d1a34;
+            --secondary: #0d1a34;
+            --accent: #bb8a04;
+            --light: #e6e0d8;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'TT Ramillas', Georgia, serif;
+        }
+        
+        @font-face {
+            font-family: 'TT Ramillas';
+            src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/webfonts/fa-solid-900.woff2') format('woff2');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .page-header {
+            background: linear-gradient(to right, rgba(13,26,52,0.9), rgba(13,26,52,0.3)), url("chartpic.jpg") center/cover no-repeat;
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .page-header p {
+            font-size: 1.25rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #3daa63;
+            transform: translateY(-2px);
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .content-section {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .content-section h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .content-section h3 {
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .content-section p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .content-section ul, 
+        .content-section ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .example-box {
+            background-color: #f8f9fa;
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .example-box h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .cta-box {
+            background-color: var(--primary);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .cta-box h3 {
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .cta-box p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        
+        .related-topics {
+            margin-top: 4rem;
+        }
+        
+        .related-topics h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .topic-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .topic-card {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .topic-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
+            background-color: #0f1a2a;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .content-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <div class="logo-icon">
+                        <img src="coinlogo.png" alt="LHS Paper Trading Logo" width="32" height="32">
+                    </div>
+                    <a href="index.html" style="text-decoration: none; color: white;">LEXINGTON PAPER CLUB</a>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html#about">About</a>
+                    <a href="index.html#program">Program</a>
+                    <a href="index.html#founders">Our Team</a>
+                    <a href="index.html#join">Join Us</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="page-header">
+        <div class="container">
+            <h1>Technical Analysis</h1>
+            <p>Master traditional chart patterns, indicators, and price action techniques that professional traders use to identify market opportunities.</p>
+        </div>
+    </section>
+    
+    <section>
+        <div class="container">
+            <div class="content-section">
+                <h2>The Art and Science of Reading Charts</h2>
+                <p>Technical analysis is the study of historical price data and volume to forecast future price movements. Unlike fundamental analysis, which examines financial statements and economic factors, technical analysis focuses solely on the price action in the markets. Our Technical Analysis program teaches students how to interpret charts, identify patterns, and use technical indicators to make more informed trading decisions.</p>
+                
+                <h3>Chart Types and Time Frames</h3>
+                <p>Understanding different chart types and selecting appropriate time frames is essential for effective technical analysis. Our program covers:</p>
+                
+                <ul>
+                    <li><strong>Line Charts</strong> - Simple representations of closing prices that help identify overall trends.</li>
+                    <li><strong>Bar Charts</strong> - Displaying open, high, low, and close prices to show more detailed price action.</li>
+                    <li><strong>Candlestick Charts</strong> - Japanese charting method that provides rich visual information about market psychology.</li>
+                    <li><strong>Point and Figure Charts</strong> - Focus on significant price movements while filtering out minor fluctuations.</li>
+                    <li><strong>Time Frame Selection</strong> - Choosing appropriate intervals from tick charts to monthly charts based on trading style and goals.</li>
+                </ul>
+                
+                <div class="example-box">
+                    <h4>Example: Reading a Candlestick</h4>
+                    <p>Candlestick charts convey multiple pieces of information in a single price bar:</p>
+                    <p>- A green (or white) candle indicates the close was higher than the open</p>
+                    <p>- A red (or black) candle indicates the close was lower than the open</p>
+                    <p>- The "body" shows the range between open and close prices</p>
+                    <p>- The "wicks" or "shadows" show the high and low prices</p>
+                    <p>Specific candlestick patterns like "Doji," "Hammer," or "Engulfing Pattern" can signal potential reversals or continuation of trends.</p>
+                </div>
+                
+                <h3>Trend Analysis</h3>
+                <p>Identifying and following trends is one of the most fundamental aspects of technical analysis. We explore:</p>
+                
+                <ul>
+                    <li><strong>Trend Identification</strong> - Recognizing uptrends, downtrends, and sideways markets.</li>
+                    <li><strong>Support and Resistance</strong> - Identifying price levels where buying or selling pressure typically intensifies.</li>
+                    <li><strong>Trendlines</strong> - Drawing and using trendlines to visualize market direction and potential reversals.</li>
+                    <li><strong>Channels</strong> - Trading within price channels to capitalize on range-bound markets.</li>
+                    <li><strong>Fibonacci Retracements</strong> - Using mathematical ratios to identify potential reversal levels within a trend.</li>
+                </ul>
+                
+                <h3>Chart Patterns</h3>
+                <p>Chart patterns are recurring formations that appear on price charts and can indicate future price movements. Our program covers:</p>
+                
+                <ul>
+                    <li><strong>Continuation Patterns</strong> - Formations like flags, pennants, and triangles that suggest the prevailing trend will resume.</li>
+                    <li><strong>Reversal Patterns</strong> - Formations such as head and shoulders, double tops/bottoms, and rounding patterns that signal potential trend changes.</li>
+                    <li><strong>Volume Patterns</strong> - How trading volume can confirm or contradict price patterns.</li>
+                    <li><strong>Candlestick Patterns</strong> - Multi-candle formations that provide insights into market psychology and potential price movements.</li>
+                    <li><strong>Harmonic Patterns</strong> - Complex geometric price patterns based on Fibonacci ratios.</li>
+                </ul>
+                
+                <h3>Technical Indicators</h3>
+                <p>Technical indicators are mathematical calculations based on price, volume, or open interest that help traders analyze markets. We examine:</p>
+                
+                <ol>
+                    <li><strong>Trend Indicators</strong> - Moving averages, MACD, Parabolic SAR, and ADX for identifying and confirming trends.</li>
+                    <li><strong>Momentum Indicators</strong> - RSI, Stochastic Oscillator, and CCI for measuring the speed of price movements.</li>
+                    <li><strong>Volatility Indicators</strong> - Bollinger Bands, ATR, and Keltner Channels for measuring market volatility.</li>
+                    <li><strong>Volume Indicators</strong> - On-Balance Volume, Volume Profile, and Money Flow Index for analyzing trading volume.</li>
+                    <li><strong>Custom Indicators</strong> - Creating and optimizing personalized indicators for specific trading approaches.</li>
+                </ol>
+                
+                <div class="example-box">
+                    <h4>Example: Using the RSI Indicator</h4>
+                    <p>The Relative Strength Index (RSI) is a momentum oscillator that measures the speed and change of price movements on a scale from 0 to 100:</p>
+                    <p>- RSI above 70 is traditionally considered overbought (potential sell signal)</p>
+                    <p>- RSI below 30 is traditionally considered oversold (potential buy signal)</p>
+                    <p>- Divergence between RSI and price can signal potential reversals</p>
+                    <p>- In strong trends, RSI can remain in overbought/oversold territory for extended periods</p>
+                    <p>Rather than using RSI in isolation, experienced traders combine it with trend analysis and other confirmation signals.</p>
+                </div>
+                
+                <h3>Price Action Trading</h3>
+                <p>Price action trading focuses on the movement of price itself without relying heavily on indicators. Our program explores:</p>
+                
+                <ul>
+                    <li>Reading individual candlesticks and bar patterns</li>
+                    <li>Identifying and trading key support/resistance levels</li>
+                    <li>Recognizing supply and demand zones</li>
+                    <li>Using multiple time frame analysis</li>
+                    <li>Understanding market structure with higher highs/lows and lower highs/lows</li>
+                </ul>
+                
+                <div class="cta-box">
+                    <h3>Master the Charts</h3>
+                    <p>Our Technical Analysis program provides the foundation needed to read the language of the markets and make more informed trading decisions based on price action.</p>
+                    <a href="index.html#join" class="btn">Join the Club</a>
+                </div>
+            </div>
+            
+            <div class="related-topics">
+                <h3>Related Topics</h3>
+                <div class="topic-cards">
+                    <div class="topic-card">
+                        <h4>Quantitative Methods</h4>
+                        <p>Combine technical analysis with statistical approaches for a more rigorous trading methodology.</p>
+                        <a href="quantitative-methods.html">Learn More →</a>
+                    </div>
+                    <div class="topic-card">
+                        <h4>Trading Competitions</h4>
+                        <p>Apply your technical analysis skills in our paper trading competitions to test their effectiveness.</p>
+                        <a href="trading-competitions.html">Learn More →</a>
+                    </div>
+                    <div class="topic-card">
+                        <h4>Coding & Indicators</h4>
+                        <p>Learn to implement technical indicators and automated pattern recognition in code.</p>
+                        <a href="coding-indicators.html">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>LHS Paper Trading</h3>
+                    <p>A student-led club focused on quantitative trading methods and financial literacy at Lexington High School.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#program">Our Program</a></li>
+                        <li><a href="index.html#founders">Our Team</a></li>
+                        <li><a href="index.html#join">Join Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Program Topics</h3>
+                    <ul>
+                        <li><a href="market-fundamentals.html">Market Fundamentals</a></li>
+                        <li><a href="quantitative-methods.html">Quantitative Methods</a></li>
+                        <li><a href="coding-indicators.html">Coding & Indicators</a></li>
+                        <li><a href="technical-analysis.html">Technical Analysis</a></li>
+                        <li><a href="trading-competitions.html">Trading Competitions</a></li>
+                        <li><a href="advanced-challenges.html">Advanced Challenges</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Email: lhspaperclub@gmail.com</a></li>
+                        <li><a href="#">Instagram: @lhs_papertrading</a></li>
+                        <li><a href="#">Room 445, Lexington High School</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lexington High School Paper Trading Club. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
