@@ -326,17 +326,40 @@
             opacity: 0.8;
         }
         
+        /* Modified testimonial grid to enable horizontal scrolling */
         .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            overflow-x: auto;
             gap: 2rem;
+            padding-bottom: 1rem;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) rgba(255,255,255,0.1);
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        }
+        
+        .testimonial-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .testimonial-grid::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+        }
+        
+        .testimonial-grid::-webkit-scrollbar-thumb {
+            background-color: var(--accent);
+            border-radius: 4px;
         }
         
         .testimonial-card {
+            flex: 0 0 auto;
+            width: 300px;
             background-color: rgba(255,255,255,0.1);
             padding: 2rem;
             border-radius: 8px;
             position: relative;
+            margin-bottom: 0.5rem;
         }
         
         .testimonial-content {
@@ -583,7 +606,7 @@
         </div>
     </section>
     
-    <!-- 2. STUDENT VOICES (TESTIMONIALS) -->
+    <!-- 2. STUDENT VOICES (TESTIMONIALS) - MODIFIED FOR HORIZONTAL SCROLLING -->
     <section id="testimonials" class="testimonials">
         <div class="container">
             <div class="section-title">
@@ -624,6 +647,45 @@
                         <div class="author-info">
                             <h4>Sarah K.</h4>
                             <p>Junior, Competition Winner</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- NEW TESTIMONIAL 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "As someone with no prior finance experience, I was intimidated at first. But the step-by-step approach to learning quantitative methods made everything accessible and engaging."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="michael-leader.jpeg" alt="Student">
+                        <div class="author-info">
+                            <h4>Jason T.</h4>
+                            <p>Sophomore, New Member</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- NEW TESTIMONIAL 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "The trading competitions helped me develop resilience and critical thinking. I've learned that success in investing comes from discipline and continuous learning."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="wesley-leader.jpg" alt="Student">
+                        <div class="author-info">
+                            <h4>Emma R.</h4>
+                            <p>Senior, Harvard Admit</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- NEW TESTIMONIAL 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        "Being part of this club has given me practical skills that I didn't get from my regular classes. The ability to analyze data and make informed decisions has applications beyond just trading."
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="vedant-leader.jpg" alt="Student">
+                        <div class="author-info">
+                            <h4>David L.</h4>
+                            <p>Senior, Competition Finalist</p>
                         </div>
                     </div>
                 </div>
