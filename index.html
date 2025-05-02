@@ -169,10 +169,14 @@
         .hero {
             background: linear-gradient(to right, rgba(13,26,52,0.9), rgba(13,26,52,0.3)), url("tvfront2.png") center/cover no-repeat;
             color: white;
-            padding: 6rem 0;
+            padding: 16rem 0; 
             text-align: left;
             position: relative;
+            min-height: 100vh; 
+            display: flex;
+            align-items: center;
         }
+
         
         .hero h1 {
             font-size: 3rem;
@@ -660,7 +664,16 @@
             .menu-toggle {
                 display: flex;
             }
+            .hero {
+                padding: 10rem 0; /* Slightly less padding on mobile */
+                min-height: 80vh; /* A bit shorter on mobile */
+            }
             
+            .hero h1 {
+                font-size: 2.5rem; /* Smaller font on mobile */
+                width: 100%;
+            }
+
             .hero {
                 padding: 4rem 0;
             }
@@ -1022,7 +1035,7 @@
                 </div>
                 <div class="social-proof-item">
                     <span>📱</span>
-                    <span>@paper.lhs</span>
+                        <a href="https://www.instagram.com/paper.lhs/?utm_source=ig_web_button_share_sheet" target="_blank" style="color: white; text-decoration: underline;">@paper.lhs</a>
                 </div>
             </div>
         </div>
@@ -1058,7 +1071,7 @@
                     <h3>Contact</h3>
                     <ul>
                         <li><a href="#">Email: lhspaperclub@gmail.com</a></li>
-                        <li><a href="#">Instagram: @paper.lhs</a></li>
+                        <li><a href="https://www.instagram.com/paper.lhs/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram: @paper.lhs</a></li>
                         <li><a href="#">Room 999, Lexington High School</a></li>
                     </ul>
                 </div>
