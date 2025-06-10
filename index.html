@@ -646,7 +646,7 @@
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero h1 {
-                font-size: 2.75rem;
+                font-size: 2.5rem;
                 width: 90%;
             }
             
@@ -656,6 +656,20 @@
             
             .about-text h3 {
                 font-size: 1.6rem;
+            }
+
+            .about-grid {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .about-logo {
+                flex: 0 0 auto;
+                margin: 0 auto;
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
             }
         }
         
@@ -667,18 +681,10 @@
             .menu-toggle {
                 display: flex;
             }
-            .hero {
-                padding: 10rem 0;
-                min-height: 80vh;
-            }
-            
-            .hero h1 {
-                font-size: 2.5rem;
-                width: 100%;
-            }
 
             .hero {
-                padding: 4rem 0;
+                padding: 8rem 0;
+                min-height: 70vh;
             }
             
             .hero h1 {
@@ -708,8 +714,17 @@
             
             .footer-content {
                 grid-template-columns: 1fr;
+                text-align: center;
             }
-            
+
+            .footer-column {
+                margin-bottom: 2rem;
+            }
+
+            .footer-column:last-child {
+                margin-bottom: 0;
+            }
+
             .testimonial-card {
                 width: 260px;
             }
@@ -717,12 +732,36 @@
             section {
                 padding: 2.5rem 0;
             }
+
+            .about-grid {
+                text-align: center;
+            }
+
+            .about-text {
+                text-align: center;
+            }
+
+            .about-text h3,
+            .about-text p {
+                text-align: center;
+            }
+
+            .social-proof {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .social-proof-item {
+                width: 100%;
+                justify-content: center;
+            }
         }
         
         @media (max-width: 480px) {
             .container {
-                padding: 0 0.75rem;
-                width: 95%;
+                padding: 0 1rem;
+                width: 100%;
             }
             
             .logo {
@@ -730,8 +769,8 @@
             }
             
             .logo-icon {
-                width: 45px;
-                height: 45px;
+                width: 40px;
+                height: 40px;
             }
             
             .hero h1 {
@@ -755,19 +794,114 @@
             }
             
             .feature-icon {
-                width: 45px;
-                height: 45px;
+                width: 40px;
+                height: 40px;
                 font-size: 1.1rem;
             }
             
             .testimonial-card {
-                width: 240px;
+                width: 100%;
                 padding: 1.25rem;
             }
             
             .btn {
                 padding: 0.6rem 1.2rem;
                 font-size: 0.9rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .mobile-nav-links a {
+                font-size: 1.1rem;
+                padding: 0.75rem 1rem;
+            }
+
+            .footer-column h3 {
+                font-size: 1.1rem;
+            }
+
+            .footer-column ul li {
+                margin-bottom: 0.75rem;
+            }
+
+            .footer-bottom {
+                font-size: 0.8rem;
+            }
+
+            .testimonial-grid {
+                padding: 0.5rem;
+            }
+
+            .testimonial-author img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .author-info h4 {
+                font-size: 0.9rem;
+            }
+
+            .author-info p {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Additional Mobile Optimizations */
+        @media (max-width: 768px) {
+            .about {
+                background-position: center;
+            }
+
+            .hero {
+                background-position: center;
+            }
+
+            .feature-card img {
+                height: 180px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 20px 1fr;
+            }
+
+            .timeline-marker .dot {
+                width: 16px;
+                height: 16px;
+            }
+
+            .chart {
+                height: 200px;
+            }
+
+            .stat {
+                min-width: 70px;
+            }
+
+            .stat-value {
+                font-size: 1.1rem;
+            }
+
+            .stat-label {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Touch Device Optimizations */
+        @media (hover: none) {
+            .btn:hover {
+                transform: none;
+            }
+
+            .feature-card:hover {
+                transform: none;
+            }
+
+            .nav-links a:hover {
+                color: var(--white);
+            }
+
+            .footer-column ul li a:hover {
+                color: rgba(255,255,255,0.7);
             }
         }
     </style>
@@ -785,7 +919,6 @@
                     <a href="#about">About</a>
                     <a href="#team">Our Team</a>
                     <a href="#founders">Leadership</a>
-                    <a href="#contact">Contact</a>
                     <a href="#join">Join Us</a>
                 </div>
                 <div class="menu-toggle" id="menuToggle">
@@ -800,7 +933,6 @@
                 <a href="#about" onclick="closeMenu()">About</a>
                 <a href="#team" onclick="closeMenu()">Our Team</a>
                 <a href="#founders" onclick="closeMenu()">Leadership</a>
-                <a href="#contact" onclick="closeMenu()">Contact</a>
                 <a href="#join" onclick="closeMenu()">Join Us</a>
             </div>
         </div>
@@ -976,56 +1108,50 @@
         </div>
     </section>
     
-    <!-- 7. CONTACT -->
-    <section id="contact" class="contact">
+    <!-- 7. CONTACT & JOIN US -->
+    <section id="contact" class="cta">
         <div class="container">
             <div class="section-title">
-                <h2>Contact Us</h2>
-                <p>Get in touch with Lexington QRG</p>
+                <h2 style="color: var(--white);">Contact & Join Us</h2>
+                <p style="color: var(--white);">Get in touch with Lexington QRG and take your first step toward mastering the markets</p>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
                 <div style="text-align: center;">
                     <div class="feature-icon" style="margin: 0 auto 1rem;">📧</div>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Email</h3>
-                    <p>lhspaperclub@gmail.com</p>
+                    <h3 style="color: var(--white); margin-bottom: 0.5rem;">Email</h3>
+                    <p style="color: rgba(255,255,255,0.9);">lhspaperclub@gmail.com</p>
                 </div>
                 <div style="text-align: center;">
                     <div class="feature-icon" style="margin: 0 auto 1rem;">📍</div>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Location</h3>
-                    <p>Room 999<br>Lexington High School</p>
+                    <h3 style="color: var(--white); margin-bottom: 0.5rem;">Location</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Room 999<br>Lexington High School</p>
                 </div>
                 <div style="text-align: center;">
                     <div class="feature-icon" style="margin: 0 auto 1rem;">🕒</div>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Meeting Time</h3>
-                    <p>Thursdays<br>3:15 PM</p>
+                    <h3 style="color: var(--white); margin-bottom: 0.5rem;">Meeting Time</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Thursdays<br>3:15 PM</p>
                 </div>
                 <div style="text-align: center;">
                     <div class="feature-icon" style="margin: 0 auto 1rem;">📱</div>
-                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Social Media</h3>
-                    <p><a href="https://www.instagram.com/lex.qrg/?utm_source=ig_web_button_share_sheet" target="_blank" style="color: var(--primary); text-decoration: none;">@paper.lhs</a></p>
+                    <h3 style="color: var(--white); margin-bottom: 0.5rem;">Social Media</h3>
+                    <p style="color: rgba(255,255,255,0.9);"><a href="https://www.instagram.com/lex.qrg/?utm_source=ig_web_button_share_sheet" target="_blank" style="color: var(--white); text-decoration: underline;">@lex.qrg</a></p>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <!-- 8. JOIN US CTA -->
-    <section id="join" class="cta">
-        <div class="container">
-            <h2>Join Lexington QRG</h2>
-            <p>Take your first step toward mastering the markets with mathematical precision and a supportive community</p>
-            <a href="#" class="btn">Sign Up Now</a>
-            <div class="social-proof">
-                <div class="social-proof-item">
-                    <span>📍</span>
-                    <span>Room 999</span>
-                </div>
-                <div class="social-proof-item">
-                    <span>🕒</span>
-                    <span>Thursdays, 3:15 PM</span>
-                </div>
-                <div class="social-proof-item">
-                    <span>📱</span>
-                    <a href="https://www.instagram.com/lex.qrg/?utm_source=ig_web_button_share_sheet" target="_blank" style="color: white; text-decoration: underline;">@lex.qrg</a>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#" class="btn">Sign Up Now</a>
+                <div class="social-proof">
+                    <div class="social-proof-item">
+                        <span>📍</span>
+                        <span>Room 999</span>
+                    </div>
+                    <div class="social-proof-item">
+                        <span>🕒</span>
+                        <span>Thursdays, 3:15 PM</span>
+                    </div>
+                    <div class="social-proof-item">
+                        <span>📱</span>
+                        <a href="https://www.instagram.com/lex.qrg/?utm_source=ig_web_button_share_sheet" target="_blank" style="color: white; text-decoration: underline;">@lex.qrg</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1046,7 +1172,6 @@
                         <li><a href="#team">Our Team</a></li>
                         <li><a href="#founders">Leadership</a></li>
                         <li><a href="#testimonials">Student Voices</a></li>
-                        <li><a href="#contact">Contact</a></li>
                         <li><a href="#join">Join Us</a></li>
                     </ul>
                 </div>
