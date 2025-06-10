@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lex Paper</title>
+    <title>Lex QRG</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
     <style>
         :root {
-            --primary: #0d1a34;
-            --secondary: #0d1a34;
-            --accent: #bb8a04;
-            --light: #e6e0d8;
-            --dark: #212529;
-            --gray: #6c757d;
+            --primary: #1a1a1a;  /* Black */
+            --secondary: #2a2a2a;  /* Slightly lighter black */
+            --accent: #d4a574;  /* Warm cream/tan accent */
+            --light: #f5f2ed;  /* Cream background */
+            --white: #ffffff;  /* Pure white */
+            --dark: #000000;  /* Pure black */
+            --gray: #666666;  /* Medium gray */
+            --light-gray: #e8e8e8;  /* Light gray */
         }
         
         * {
@@ -45,7 +47,7 @@
         /* MOBILE NAVIGATION */
         header {
             background-color: var(--primary);
-            color: white;
+            color: var(--white);
             padding: 1rem 0;
             position: sticky;
             top: 0;
@@ -62,18 +64,25 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             z-index: 101;
+            color: var(--white);
         }
         
         .logo-icon {
-            width: 32px;
-            height: 32px;
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        
+        .logo-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
         
         .nav-links {
@@ -82,7 +91,7 @@
         }
         
         .nav-links a {
-            color: white;
+            color: var(--white);
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -107,7 +116,7 @@
             display: block;
             height: 3px;
             width: 100%;
-            background-color: white;
+            background-color: var(--white);
             border-radius: 3px;
             transition: all 0.3s ease-in-out;
         }
@@ -141,7 +150,7 @@
         }
         
         .mobile-nav-links a {
-            color: white;
+            color: var(--white);
             font-size: 1.2rem;
             text-decoration: none;
             font-weight: 500;
@@ -167,8 +176,8 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(to right, rgba(13,26,52,0.9), rgba(13,26,52,0.3)), url("tvfront3.png") center/cover no-repeat;
-            color: white;
+            background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url("tvfront3.png") center/cover no-repeat;
+            color: var(--white);
             padding: 16rem 0; 
             text-align: left;
             position: relative;
@@ -185,9 +194,7 @@
             width: 100%;
             max-width: 800px;
             position: relative;
-            background: linear-gradient(to right, rgba(13,26,52,0.8) 50%, transparent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: white;
+            color: var(--white);
         }
         
         .hero p {
@@ -195,11 +202,12 @@
             max-width: 600px;
             margin: 0 0 2rem;
             opacity: 0.9;
+            color: var(--white);
         }
         
         .btn {
             display: inline-block;
-            background-color: var(--accent);
+            background-color: var(--white);
             color: var(--primary);
             text-decoration: none;
             padding: 0.75rem 1.5rem;
@@ -209,7 +217,8 @@
         }
         
         .btn:hover {
-            background-color: #3daa63;
+            background-color: var(--accent);
+            color: var(--white);
             transform: translateY(-2px);
         }
         
@@ -242,7 +251,7 @@
         }
         
         .feature-card {
-            background-color: white;
+            background-color: var(--white);
             padding: 1.5rem;
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
@@ -255,8 +264,8 @@
         }
         
         .feature-icon {
-            background-color: rgba(80,200,120,0.1);
-            color: var(--accent);
+            background-color: var(--light);
+            color: var(--primary);
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -273,58 +282,27 @@
             color: var(--primary);
         }
         
+        .feature-card .btn {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .feature-card .btn:hover {
+            background-color: var(--accent);
+        }
+        
         /* About Section */
         .about {
-            background: linear-gradient(to right, rgba(13,26,52,0.9), rgba(13,26,52,0.3)), url("nysepic.jpg") center/cover no-repeat;
-            color: white;
+            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4)), url("nysepic.jpg") center/cover no-repeat;
+            color: var(--white);
             padding: 4rem 0;
             position: relative;
-        }
-        
-        .about .container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        
-        .about .section-title {
-            text-align: left;
-            margin-left: 0;
-            padding-left: 0;
-            max-width: 100%;
-            width: 100%;
-        }
-        
-        .about .section-title h2 {
-            color: white;
-            text-align: left;
-        }
-        
-        .about .section-title p {
-            color: rgba(255,255,255,0.8);
-            margin-left: 0;
-            text-align: left;
-        }
-        
-        .about-content {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            width: 100%;
-        }
-        
-        .about-text {
-            text-align: left;
-            max-width: 100%;
-            margin-right: auto;
-            margin-left: 0;
-            padding-left: 0;
         }
         
         .about-text h3 {
             text-align: left;
             font-size: 1.75rem;
-            color: white;
+            color: var(--white);
             margin-bottom: 1.25rem;
             margin-left: 0;
             padding-left: 0;
@@ -338,9 +316,15 @@
             margin-bottom: 1.5rem;
         }
         
-        .about-text .btn {
-            float: left;
-            clear: both;
+        @media (max-width: 992px) {
+            .about .container > div {
+                grid-template-columns: 1fr !important;
+                text-align: center;
+            }
+            
+            .about img {
+                margin-top: 2rem;
+            }
         }
         
         /* Timeline Section */
@@ -385,7 +369,7 @@
         }
         
         .timeline-content {
-            background-color: white;
+            background-color: var(--white);
             padding: 1.25rem;
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
@@ -400,13 +384,13 @@
         /* Testimonials Section */
         .testimonials {
             background-color: var(--primary);
-            color: white;
+            color: var(--white);
             padding: 3rem 0;
         }
         
         .testimonials .section-title h2,
         .testimonials .section-title p {
-            color: white;
+            color: var(--white);
         }
         
         .testimonials .section-title p {
@@ -480,11 +464,11 @@
         
         /* Chart Section */
         .chart-section {
-            background-color: white;
+            background-color: var(--white);
         }
         
         .chart-container {
-            background-color: white;
+            background-color: var(--white);
             border-radius: 8px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             padding: 1.5rem;
@@ -530,7 +514,7 @@
         .chart {
             width: 100%;
             height: 250px;
-            background-color: #f8f9fa;
+            background-color: var(--light);
             border-radius: 4px;
             position: relative;
             overflow: hidden;
@@ -542,7 +526,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(180deg, transparent, rgba(80,200,120,0.2));
+            background: linear-gradient(180deg, transparent, rgba(212,165,116,0.3));
             clip-path: polygon(
                 0% 80%,
                 10% 70%,
@@ -560,11 +544,26 @@
             );
         }
         
+        /* Founders Section */
+        .founders {
+            background-color: var(--light);
+        }
+        
+        .founder-title {
+            color: var(--accent);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--white);
+            padding: 4rem 0;
+        }
+        
         /* CTA Section */
         .cta {
             text-align: center;
-            background-color: #1a2b40;
-            color: white;
+            background-color: var(--secondary);
+            color: var(--white);
             padding: 4rem 0;
         }
         
@@ -592,13 +591,17 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            opacity: 0.6;
+            opacity: 0.8;
+        }
+        
+        .social-proof-item a {
+            color: var(--white);
         }
         
         /* Footer */
         footer {
-            background-color: #0f1a2a;
-            color: white;
+            background-color: var(--dark);
+            color: var(--white);
             padding: 3rem 0 1.5rem;
         }
         
@@ -665,12 +668,12 @@
                 display: flex;
             }
             .hero {
-                padding: 10rem 0; /* Slightly less padding on mobile */
-                min-height: 80vh; /* A bit shorter on mobile */
+                padding: 10rem 0;
+                min-height: 80vh;
             }
             
             .hero h1 {
-                font-size: 2.5rem; /* Smaller font on mobile */
+                font-size: 2.5rem;
                 width: 100%;
             }
 
@@ -726,6 +729,11 @@
                 font-size: 1rem;
             }
             
+            .logo-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
             .hero h1 {
                 font-size: 1.8rem;
             }
@@ -770,14 +778,14 @@
             <nav>
                 <div class="logo">
                     <div class="logo-icon">
-                        <img src="coinlogo.png" alt="LHS Paper Trading Logo" width="32" height="32">
+                        <img src="transparentwhitelogo2.png" alt="LHS Paper Trading Logo">
                     </div>
-                    <div>LEXINGTON PAPER CLUB</div>
                 </div>
                 <div class="nav-links">
                     <a href="#about">About</a>
-                    <a href="#program">Program</a>
-                    <a href="#founders">Our Team</a>
+                    <a href="#team">Our Team</a>
+                    <a href="#founders">Leadership</a>
+                    <a href="#contact">Contact</a>
                     <a href="#join">Join Us</a>
                 </div>
                 <div class="menu-toggle" id="menuToggle">
@@ -790,8 +798,9 @@
         <div class="mobile-nav" id="mobileNav">
             <div class="mobile-nav-links">
                 <a href="#about" onclick="closeMenu()">About</a>
-                <a href="#program" onclick="closeMenu()">Program</a>
-                <a href="#founders" onclick="closeMenu()">Our Team</a>
+                <a href="#team" onclick="closeMenu()">Our Team</a>
+                <a href="#founders" onclick="closeMenu()">Leadership</a>
+                <a href="#contact" onclick="closeMenu()">Contact</a>
                 <a href="#join" onclick="closeMenu()">Join Us</a>
             </div>
         </div>
@@ -800,8 +809,8 @@
     <!-- 1. FRONT COVER (HERO SECTION) -->
     <section class="hero">
         <div class="container">
-            <h1>Real Markets. Quant Skills. Zero Risk.</h1>
-            <p>Master the market through quantitative methods, technical analysis, and coding.</p>
+            <h1>Lexington Quantitative Research Group</h1>
+            <p>Master the market through quantitative methods with zero risk.</p>
             <a href="#join" class="btn">Join Our Club</a>
         </div>
     </section>
@@ -810,13 +819,13 @@
     <section id="testimonials" class="testimonials">
         <div class="container">
             <div class="section-title">
-                <h2>What is Lexington Paper?</h2>
+                <h2>What is Lexington QRG?</h2>
                 <p>Hear what our members have to say about their experience</p>
             </div>
             <div class="testimonial-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        "Lexington Paper Club gave me a chance to apply my math skills in a real-world context. The competitions were challenging but fun, and I learned so much about financial markets."
+                        "Lexington QRG taught me how to apply statistical models and mathematical analysis to real markets. Learning to backtest strategies and calculate risk-adjusted returns has been invaluable for my quantitative finance journey."
                     </div>
                     <div class="testimonial-author">
                         <img src="allen-testimonial.jpeg" alt="Student">
@@ -828,7 +837,7 @@
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        "I was always interested in coding but never knew how to apply it to finance. Learning to code indicators and analyze market data has opened up a whole new world for me."
+                        "I never realized how powerful Python could be for market analysis. Building algorithmic trading strategies and coding technical indicators has shown me the intersection of computer science and quantitative finance."
                     </div>
                     <div class="testimonial-author">
                         <img src="lucy-testimonial.jpg" alt="Student">
@@ -840,7 +849,7 @@
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        "The supportive environment makes a huge difference. We can explore complex concepts without the competitive pressure I've felt in other academic clubs."
+                        "The club's focus on data-driven decision making transformed how I approach markets. Using regression analysis and probability theory to identify market inefficiencies is far more reliable than emotional trading."
                     </div>
                     <div class="testimonial-author">
                         <img src="sarah-testinomial.JPG" alt="Student">
@@ -850,10 +859,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- NEW TESTIMONIAL 1 -->
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        "As someone with no prior finance experience, I was intimidated at first. But the step-by-step approach to learning quantitative methods was insightful and engaging."
+                        "Even as a beginner, I'm learning to use mathematical models like moving averages and Bollinger Bands. The systematic approach to risk management through position sizing formulas makes trading feel like applied mathematics."
                     </div>
                     <div class="testimonial-author">
                         <img src="patrick-testimonial.jpg" alt="Student">
@@ -863,10 +871,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- NEW TESTIMONIAL 2 -->
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        "The trading competitions helped me develop resilience and critical thinking. I've learned that success in investing comes from discipline and continuous learning."
+                        "Developing my own quantitative strategies using machine learning techniques set me apart in college applications. The skills in statistical arbitrage and pairs trading I learned here are directly applicable to my future in finance."
                     </div>
                     <div class="testimonial-author">
                         <img src="IMG_3565.jpeg" alt="Student">
@@ -876,10 +883,9 @@
                         </div>
                     </div>
                 </div>
-                <!-- NEW TESTIMONIAL 3 -->
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        "Being part of this club has given me practical skills that I didn't get from my regular classes. The ability to analyze data and make informed decisions has applications beyond just trading."
+                        "Understanding concepts like Sharpe ratios, beta calculations, and portfolio optimization theory has given me a huge edge. The club's emphasis on backtesting and data validation ensures our strategies are statistically sound."
                     </div>
                     <div class="testimonial-author">
                         <img src="lewis-testimonial2.jpeg" alt="Student">
@@ -896,132 +902,116 @@
     <!-- 3. ABOUT US -->
     <section id="about" class="about">
         <div class="container">
-            <div class="section-title">
-                <h2>About Our Club</h2>
-                <p>Learn, trade, and compete in a supportive environment designed for business minded math and coding enthusiasts. We focus on utilizing traditional fundamental and technical analysis along with quantitative methods to trade effectively.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Unparalleled Quantitative Trading Opportunity at LHS</h3>
-                    <p>The Lexington High School Paper Trading Club offers a unique opportunity to explore financial markets using a quantitative approach. We combine mathematical concepts with technical analysis to help students develop practical trading skills.</p>
-                    <p>Our club provides a supportive and engaging environment where students can learn about trading markets, develop coding skills, and participate in exciting paper trading competitions – all without the financial risk.</p>
-                    <a href="#program" class="btn">Explore Our Program</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- 4. OUR PROGRAM -->
-    <section id="program">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Program</h2>
-                <p>A comprehensive curriculum that bridges financial markets, mathematics, and coding</p>
-            </div>
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3><a href="market-fundamentals.html" style="text-decoration: none; color: var(--primary);">Market Fundamentals</a></h3>
-                    <p>Learn the basics of financial markets, including different asset classes, market structure, and fundamental concepts that drive price movements.</p>
-                    <a href="market-fundamentals.html" class="btn" style="margin-top: 1rem; font-size: 0.9rem; padding: 0.5rem 1rem;">Learn More</a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🧮</div>
-                    <h3><a href="quantitative-methods.html" style="text-decoration: none; color: var(--primary);">Quantitative Methods</a></h3>
-                    <p>Explore mathematical concepts and statistical techniques used to analyze market data and make informed trading decisions.</p>
-                    <a href="quantitative-methods.html" class="btn" style="margin-top: 1rem; font-size: 0.9rem; padding: 0.5rem 1rem;">Learn More</a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💻</div>
-                    <h3><a href="coding-indicators.html" style="text-decoration: none; color: var(--primary);">Coding & Indicators</a></h3>
-                    <p>Develop programming skills to build custom trading indicators and algorithms that automate analysis and strategy implementation.</p>
-                    <a href="coding-indicators.html" class="btn" style="margin-top: 1rem; font-size: 0.9rem; padding: 0.5rem 1rem;">Learn More</a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🏆</div>
-                    <h3><a href="trading-competitions.html" style="text-decoration: none; color: var(--primary);">Trading Competitions</a></h3>
-                    <p>Test your skills in regular paper trading competitions with rewards for top performers, fostering friendly competition among members.</p>
-                    <a href="trading-competitions.html" class="btn" style="margin-top: 1rem; font-size: 0.9rem; padding: 0.5rem 1rem;">Learn More</a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📈</div>
-                    <h3><a href="technical-analysis.html" style="text-decoration: none; color: var(--primary);">Technical Analysis</a></h3>
-                    <p>Master traditional chart patterns, indicators, and price action techniques that professional traders use to identify market opportunities.</p>
-                    <a href="technical-analysis.html" class="btn" style="margin-top: 1rem; font-size: 0.9rem; padding: 0.5rem 1rem;">Learn More</a>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3><a href="advanced-challenges.html" style="text-decoration: none; color: var(--primary);">Advanced Challenges</a></h3>
-                    <p>Tackle more complex trading scenarios and develop sophisticated strategies for interested students who want to push their skills further.</p>
-                    <a href="advanced-challenges.html" class="btn" style="margin-top: 1rem; font-size: 0.9rem; padding: 0.5rem 1rem;">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section class="chart-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Performance Edge</h2>
-                <p>Combining mathematical precision with market intuition</p>
-            </div>
-            <div class="chart-container">
-                <div class="chart-header">
-                    <h3>Performance Dashboard</h3>
-                    <div class="stats">
-                        <div class="stat">
-                            <div class="stat-value">+21%</div>
-                            <div class="stat-label">Avg. Return</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">36</div>
-                            <div class="stat-label">Members</div>
-                        </div>
-                        <div class="stat">
-                            <div class="stat-value">12</div>
-                            <div class="stat-label">Competitions</div>
-                        </div>
+            <div class="about-grid" style="display: flex; align-items: center; gap: 4rem;">
+                <div class="about-content" style="flex: 1;">
+                    <div class="section-title" style="text-align: left; margin-bottom: 2rem;">
+                        <h2 style="color: white; text-align: left;">About Our Club</h2>
+                        <p style="color: rgba(255,255,255,0.8); margin-left: 0; text-align: left;">Pioneering quantitative research and systematic trading strategies at the high school level</p>
+                    </div>
+                    <div class="about-text">
+                        <h3>Unparalleled Quantitative Trading Education at LHS</h3>
+                        <p>The Lexington Quantitative Research Group is the premier destination for students passionate about applying mathematical and computational methods to financial markets. We specialize in developing data-driven trading strategies using statistical analysis, machine learning, and algorithmic approaches.</p>
+                        <p>Our curriculum covers advanced quantitative concepts including statistical arbitrage, mean reversion strategies, momentum indicators, portfolio optimization theory, and risk management through mathematical models. Members learn to code in Python, implement backtesting frameworks, and develop systematic trading algorithms that remove emotion from investment decisions.</p>
+                        <p>Unlike traditional investment clubs, we focus exclusively on quantitative methods - from calculating correlation matrices and running Monte Carlo simulations to building predictive models using historical market data. Our members gain hands-on experience with professional-grade tools and techniques used by hedge funds and proprietary trading firms.</p>
                     </div>
                 </div>
-                <div class="chart">
-                    <div class="chart-line"></div>
+                <div class="about-logo" style="flex: 0 0 300px;">
+                    <img src="transparentwhitelogo2.png" alt="Lexington QRG Logo" style="width: 100%; height: auto; max-width: 300px; filter: brightness(0) invert(1);">
                 </div>
             </div>
         </div>
     </section>
     
+    <!-- 5. LEADERSHIP TEAM -->
     <section id="founders" class="founders">
         <div class="container">
             <div class="section-title">
                 <h2>Leadership Team</h2>
-                <p>Meet the visionaries behind Lexington Paper Club</p>
+                <p>Meet the visionaries behind Lexington QRG</p>
             </div>
             <div class="features">
                 <div class="feature-card">
                     <img src="wesley-leader.jpg" alt="Wesley Hu" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1.5rem;">
                     <h3>Wesley Hu</h3>
                     <p class="founder-title" style="color: var(--accent); margin-bottom: 1rem; font-weight: 600;">Co-Founder & CEO</p>
-                    <p>Wesley brings his passion for quantitative analysis and finance to the club. With strong business leadership experience and a background in mathematics competitions, he manages the club and leads the development of our technical curriculum and trading challenges.</p>
+                    <p>Wesley brings his passion for quantitative analysis and finance to the club. With strong business leadership experience and a background in mathematics competitions, he manages the club and leads the development of our technical curriculum.</p>
                 </div>
                 <div class="feature-card">
                     <img src="vedant-leader.jpg" alt="Vedant Saran" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1.5rem;">
                     <h3>Vedant Saran</h3>
-                    <p class="founder-title" style="color: var(--accent); margin-bottom: 1rem; font-weight: 600;">Co-Founder & Lead Quant Developer</p>
-                    <p>Vedant combines his comprehensive business knowledge with strong development skills. As CFO and Lead Developer, he manages the club's resources and builds the technical infrastructure like custom indicators and confirmation setups.</p>
+                    <p class="founder-title" style="color: var(--accent); margin-bottom: 1rem; font-weight: 600;">Co-Founder & Lead Developer</p>
+                    <p>Vedant combines his comprehensive business knowledge with strong development skills. As Lead Developer, he builds the club's technical infrastructure, coding strategies, models, and backtesting software.</p>
                 </div>
                 <div class="feature-card">
                     <img src="michael-leader.jpeg" alt="Michael Han" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1.5rem;">
                     <h3>Michael Han</h3>
-                    <p class="founder-title" style="color: var(--accent); margin-bottom: 1rem; font-weight: 600;">Co-Founder & Lead Quant Researcher</p>
-                    <p>Michael specializes in advanced quantitative trading models and mathematical algorithms. As Lead Quant, he develops sophisticated trading strategies and teaches members how to implement data-driven approaches to market analysis.</p>
+                    <p class="founder-title" style="color: var(--accent); margin-bottom: 1rem; font-weight: 600;">Co-Founder & Lead Researcher</p>
+                    <p>Michael specializes in advanced quantitative trading models and mathematical algorithms. As Lead Researcher, he develops sophisticated trading strategies and teaches members how to implement data-driven approaches to market analysis.</p>
                 </div>
             </div>
         </div>
     </section>
     
+    <!-- 6. OUR TEAM -->
+    <section id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team</h2>
+                <p>Meet the dedicated members leading Lexington QRG</p>
+            </div>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Executive Board</h3>
+                    <p>Our executive team provides strategic direction and ensures smooth operation of all club activities</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Research Team</h3>
+                    <p>The research division develops quantitative models, analyzes market trends, and creates educational content for our members.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Technology Team</h3>
+                    <p>Our tech team builds and maintains trading tools, develops custom indicators, and provides coding education to members.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 7. CONTACT -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Get in touch with Lexington QRG</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div style="text-align: center;">
+                    <div class="feature-icon" style="margin: 0 auto 1rem;">📧</div>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Email</h3>
+                    <p>lhspaperclub@gmail.com</p>
+                </div>
+                <div style="text-align: center;">
+                    <div class="feature-icon" style="margin: 0 auto 1rem;">📍</div>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Location</h3>
+                    <p>Room 999<br>Lexington High School</p>
+                </div>
+                <div style="text-align: center;">
+                    <div class="feature-icon" style="margin: 0 auto 1rem;">🕒</div>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Meeting Time</h3>
+                    <p>Thursdays<br>3:15 PM</p>
+                </div>
+                <div style="text-align: center;">
+                    <div class="feature-icon" style="margin: 0 auto 1rem;">📱</div>
+                    <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Social Media</h3>
+                    <p><a href="https://www.instagram.com/lex.qrg/?utm_source=ig_web_button_share_sheet" target="_blank" style="color: var(--primary); text-decoration: none;">@paper.lhs</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 8. JOIN US CTA -->
     <section id="join" class="cta">
         <div class="container">
-            <h2>Join Lexington Paper Club</h2>
+            <h2>Join Lexington QRG</h2>
             <p>Take your first step toward mastering the markets with mathematical precision and a supportive community</p>
             <a href="#" class="btn">Sign Up Now</a>
             <div class="social-proof">
@@ -1035,26 +1025,28 @@
                 </div>
                 <div class="social-proof-item">
                     <span>📱</span>
-                        <a href="https://www.instagram.com/paper.lhs/?utm_source=ig_web_button_share_sheet" target="_blank" style="color: white; text-decoration: underline;">@paper.lhs</a>
+                    <a href="https://www.instagram.com/lex.qrg/?utm_source=ig_web_button_share_sheet" target="_blank" style="color: white; text-decoration: underline;">@lex.qrg</a>
                 </div>
             </div>
         </div>
     </section>
     
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Lexington Paper Club</h3>
-                    <p>A student-led club focused on utilizing technical analysis with quantitative methods to trade effectively at Lexington High School.</p>
+                    <h3>Lexington QRG</h3>
+                    <p>A student-led club focused on researching quantitative methods to trade effectively at Lexington High School.</p>
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="#about">About Us</a></li>
-                        <li><a href="#program">Our Program</a></li>
-                        <li><a href="#founders">Our Team</a></li>
+                        <li><a href="#team">Our Team</a></li>
+                        <li><a href="#founders">Leadership</a></li>
                         <li><a href="#testimonials">Student Voices</a></li>
+                        <li><a href="#contact">Contact</a></li>
                         <li><a href="#join">Join Us</a></li>
                     </ul>
                 </div>
@@ -1071,13 +1063,13 @@
                     <h3>Contact</h3>
                     <ul>
                         <li><a href="#">Email: lhspaperclub@gmail.com</a></li>
-                        <li><a href="https://www.instagram.com/paper.lhs/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram: @paper.lhs</a></li>
+                        <li><a href="https://www.instagram.com/lex.qrg/?utm_source=ig_web_button_share_sheet" target="_blank">Instagram: @lex.qrg</a></li>
                         <li><a href="#">Room 999, Lexington High School</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Lexington High School Paper Trading Club. All rights reserved.</p>
+                <p>&copy; 2025 Lexington High School Quantitative Research Group. All rights reserved.</p>
             </div>
         </div>
     </footer>
