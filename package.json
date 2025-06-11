@@ -1,0 +1,12 @@
+{
+  "name": "lex-qrg-applications",
+  "version": "1.0.0",
+  "description": "Application system for Lexington Quantitative Research Group",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+} 

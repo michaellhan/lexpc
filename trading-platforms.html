@@ -12,15 +12,17 @@
         <div class="container">
             <nav>
                 <div class="logo">
-                    <div class="logo-icon">
-                        <img src="transparentwhitelogo2.png" alt="LHS Paper Trading Logo">
-                    </div>
+                    <a href="index.html" style="text-decoration: none; color: inherit;">
+                        <div class="logo-icon">
+                            <img src="transparentwhitelogo2.png" alt="LHS Paper Trading Logo">
+                        </div>
+                    </a>
                 </div>
                 <div class="nav-links">
                     <a href="index.html#about">About</a>
+                    <a href="index.html#leadership">Leadership</a>
                     <a href="index.html#team">Our Team</a>
-                    <a href="index.html#founders">Leadership</a>
-                    <a href="index.html#join">Join Us</a>
+                    <a href="signup.html">Join Us</a>
                 </div>
                 <div class="menu-toggle" id="menuToggle">
                     <span></span>
@@ -28,6 +30,14 @@
                     <span></span>
                 </div>
             </nav>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <div class="mobile-nav-links">
+                <a href="index.html#about" onclick="closeMenu()">About</a>
+                <a href="index.html#leadership" onclick="closeMenu()">Leadership</a>
+                <a href="index.html#team" onclick="closeMenu()">Our Team</a>
+                <a href="signup.html" onclick="closeMenu()">Join Us</a>
+            </div>
         </div>
     </header>
 
@@ -44,28 +54,18 @@
                     <ul>
                         <li>ThinkOrSwim Paper Money</li>
                         <li>Interactive Brokers Paper Trading</li>
-                        <li>TradingView Paper Trading</li>
                         <li>Webull Paper Trading</li>
+                        <li>TradingView Paper Trading</li>
                     </ul>
                 </div>
                 
                 <div class="resource-card">
-                    <h3>Market Data</h3>
+                    <h3>Data Analysis</h3>
                     <ul>
-                        <li>Yahoo Finance</li>
-                        <li>Alpha Vantage API</li>
+                        <li>Yahoo Finance API</li>
+                        <li>Alpha Vantage</li>
                         <li>IEX Cloud</li>
                         <li>Polygon.io</li>
-                    </ul>
-                </div>
-                
-                <div class="resource-card">
-                    <h3>Analysis Tools</h3>
-                    <ul>
-                        <li>TradingView Charts</li>
-                        <li>Finviz Screener</li>
-                        <li>StockCharts.com</li>
-                        <li>Bloomberg Terminal (School Access)</li>
                     </ul>
                 </div>
                 
@@ -76,6 +76,16 @@
                         <li>Backtrader</li>
                         <li>Zipline</li>
                         <li>PyAlgoTrade</li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Market Data</h3>
+                    <ul>
+                        <li>FRED Economic Data</li>
+                        <li>SEC EDGAR Database</li>
+                        <li>World Bank Data</li>
+                        <li>IMF Data</li>
                     </ul>
                 </div>
             </div>
@@ -93,10 +103,10 @@
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#leadership">Leadership</a></li>
                         <li><a href="index.html#team">Our Team</a></li>
-                        <li><a href="index.html#founders">Leadership</a></li>
                         <li><a href="index.html#testimonials">Student Voices</a></li>
-                        <li><a href="index.html#join">Join Us</a></li>
+                        <li><a href="signup.html">Join Us</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -122,6 +132,39 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Mobile menu functionality
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        menuToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        });
+        
+        function closeMenu() {
+            menuToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = mobileNav.contains(event.target);
+            const isClickOnToggle = menuToggle.contains(event.target);
+            
+            if (!isClickInsideMenu && !isClickOnToggle && mobileNav.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+        
+        // Close menu when window is resized to desktop size
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && mobileNav.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    </script>
 </body>
 </html> 
