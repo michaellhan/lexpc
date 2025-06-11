@@ -37,39 +37,13 @@ window.addEventListener('resize', function() {
     }
 });
 
-// Form submission
+// Form Validation
 const signupForm = document.getElementById('signupForm');
 if (signupForm) {
-    signupForm.addEventListener('submit', async function(e) {
+    signupForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        const formData = {
-            name: this.querySelector('input[type="text"]').value,
-            email: this.querySelector('input[type="email"]').value,
-            grade: this.querySelector('select').value,
-            experience: this.querySelector('textarea').value
-        };
-
-        try {
-            const response = await fetch('submit.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            });
-
-            const result = await response.json();
-            
-            if (result.success) {
-                alert(result.message);
-                this.reset();
-            } else {
-                alert(result.message || 'Failed to submit application. Please try again.');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again later.');
-        }
+        // Add your form submission logic here
+        alert('Thank you for your interest! We will review your application and get back to you soon.');
+        this.reset();
     });
 } 
