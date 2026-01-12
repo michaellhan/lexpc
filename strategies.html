@@ -772,40 +772,45 @@
         }
         
         // Generate volatility-based strategy returns for RCVA
-        // This strategy amplifies S&P movements (volatility-based, not market-neutral)
+        // This strategy harvests volatility with defensive bias, not tracking the S&P
         function generateRCVAStrategyReturns() {
             const strategyReturns = [];
             
-            // Volatility-based strategy: amplifies S&P movements
-            // When S&P has large moves (up or down), strategy responds more aggressively
-            // Base alpha of 6% annually, but with volatility amplification
+            // Medium-horizon volatility strategy:
+            // - Responds more to large moves (up or down)
+            // - Gains more in drawdowns, still participates in rallies
+            // - Stays relatively flat when the S&P is calm
+            // Base alpha of 6% annually with volatility capture
             
             for (let i = 0; i < 60; i++) {
                 const spyReturn = realSPYMonthlyReturns[i];
                 const absSpyReturn = Math.abs(spyReturn);
+                const rollingStart = Math.max(0, i - 2);
+                const recentReturns = realSPYMonthlyReturns.slice(rollingStart, i + 1);
+                const rollingVol = recentReturns.reduce((sum, val) => sum + Math.abs(val), 0) / recentReturns.length;
                 
-                // Amplify based on volatility: larger S&P moves = larger strategy moves
-                // Volatility multiplier: 1.0x for small moves, up to 1.5x for large moves
-                let volatilityMultiplier = 1.0;
-                if (absSpyReturn > 0.05) {
-                    // Large move: amplify more (5%+ moves)
-                    volatilityMultiplier = 1.0 + (absSpyReturn - 0.05) * 10; // Up to 1.5x for very large moves
-                    volatilityMultiplier = Math.min(1.5, volatilityMultiplier);
-                } else if (absSpyReturn > 0.03) {
-                    // Medium move: moderate amplification (3-5% moves)
-                    volatilityMultiplier = 1.0 + (absSpyReturn - 0.03) * 5;
-                }
+                // Volatility capture: respond to magnitude, not direction
+                const volatilityCapture = absSpyReturn * 0.75 + rollingVol * 0.35;
                 
-                // Strategy return = S&P return * volatility multiplier + base alpha
+                // Defensive bias: benefit more from drawdowns, less from upside
+                const drawdownBoost = Math.max(0, -spyReturn) * 0.6;
+                const upsideParticipation = Math.max(0, spyReturn) * 0.25;
+                
                 // Base monthly alpha = 6% annual / 12 = 0.5% monthly
                 const baseMonthlyAlpha = 0.06 / 12; // ~0.5% per month
                 
-                // Apply volatility amplification
-                let strategyReturn = spyReturn * volatilityMultiplier + baseMonthlyAlpha;
+                // Strategy return = base alpha + volatility capture + defensive tilt
+                let strategyReturn = baseMonthlyAlpha + volatilityCapture + drawdownBoost + upsideParticipation - spyReturn * 0.2;
                 
-                // Add some noise for realism (but maintain correlation)
-                const noise = (Math.random() - 0.5) * 0.01; // Small random component
+                // Add small noise scaled by volatility so calm markets stay flat
+                const noiseScale = Math.min(0.004, absSpyReturn * 0.2);
+                const noise = (Math.random() - 0.5) * noiseScale;
                 strategyReturn += noise;
+                
+                // Smooth to keep medium-horizon profile
+                if (i > 0) {
+                    strategyReturn = strategyReturns[i - 1] * 0.35 + strategyReturn * 0.65;
+                }
                 
                 strategyReturns.push(strategyReturn);
             }
