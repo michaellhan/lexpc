@@ -24,6 +24,15 @@
             box-sizing: border-box;
             font-family: 'TT Ramillas', Georgia, serif;
         }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        body {
+            overflow-x: hidden;
+            width: 100%;
+        }
         
         @font-face {
             font-family: 'TT Ramillas';
@@ -379,15 +388,41 @@
             }
             
             .strategy-card {
-                padding: 2rem;
+                padding: 1.5rem;
             }
             
-            .strategy-header h3 {
-                font-size: 1.75rem;
+            .strategy-title {
+                font-size: 1.5rem;
+            }
+            
+            .strategy-header p {
+                font-size: 1rem;
+            }
+            
+            .strategy-header ul li {
+                font-size: 1rem;
             }
             
             .chart-wrapper {
                 height: 300px;
+            }
+
+            .chart-container {
+                padding: 1.5rem;
+            }
+
+            .performance-metrics {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .metric-value {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
             }
             
             .footer-content {
@@ -401,6 +436,10 @@
             
             .footer-column:last-child {
                 margin-bottom: 0;
+            }
+
+            section {
+                padding: 2rem 0;
             }
         }
         
@@ -422,17 +461,58 @@
             .section-title h2 {
                 font-size: 1.5rem;
             }
-            
-            .strategy-card {
-                padding: 1.5rem;
+
+            .section-title p {
+                font-size: 0.95rem;
             }
             
-            .strategy-header h3 {
-                font-size: 1.5rem;
+            .strategy-card {
+                padding: 1rem;
+            }
+            
+            .strategy-title {
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .strategy-header p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+            }
+
+            .strategy-header ul {
+                padding-left: 1rem;
+            }
+
+            .strategy-header ul li {
+                font-size: 0.95rem;
+                line-height: 1.6;
             }
             
             .chart-wrapper {
                 height: 250px;
+            }
+
+            .chart-container {
+                padding: 1rem;
+            }
+
+            .chart-title {
+                font-size: 1.1rem;
+            }
+
+            .performance-metrics {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .metric-value {
+                font-size: 1.4rem;
+            }
+
+            .metric-label {
+                font-size: 0.8rem;
             }
             
             .mobile-nav-links a {
@@ -450,6 +530,10 @@
             
             .footer-bottom {
                 font-size: 0.8rem;
+            }
+
+            section {
+                padding: 1.5rem 0;
             }
         }
     </style>
@@ -990,6 +1074,8 @@
         // Create Chart 1 with animation
         const data1 = generateData('strategy1');
         const ctx1 = document.getElementById('chart1').getContext('2d');
+        const isMobile = window.innerWidth < 768;
+        const isSmallMobile = window.innerWidth < 480;
         
         // Verify the stats match the graph
         // Calculate actual annual alpha from the graph data
@@ -1086,9 +1172,12 @@
                             text: 'Time'
                         },
                         ticks: {
-                            maxRotation: 45,
-                            minRotation: 45,
-                            maxTicksLimit: 12
+                            maxRotation: isSmallMobile ? 90 : 45,
+                            minRotation: isSmallMobile ? 90 : 45,
+                            maxTicksLimit: isMobile ? 6 : 12,
+                            font: {
+                                size: isSmallMobile ? 10 : 12
+                            }
                         }
                     },
                     y: {
@@ -1176,9 +1265,12 @@
                             text: 'Time'
                         },
                         ticks: {
-                            maxRotation: 45,
-                            minRotation: 45,
-                            maxTicksLimit: 12
+                            maxRotation: isSmallMobile ? 90 : 45,
+                            minRotation: isSmallMobile ? 90 : 45,
+                            maxTicksLimit: isMobile ? 6 : 12,
+                            font: {
+                                size: isSmallMobile ? 10 : 12
+                            }
                         }
                     },
                     y: {
