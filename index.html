@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lex QRG</title>
+    <link rel="icon" type="image/png" href="transparentwhitelogo2.png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
     <style>
         :root {
@@ -216,7 +217,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url("maincover.png") center center / 95% auto no-repeat;
+            background: linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url("maincover.png") center calc(50% + 55px) / 82% auto no-repeat;
             background-attachment: fixed;
             z-index: 0;
         }
@@ -339,10 +340,57 @@
         
         /* About Section */
         .about {
-            background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4)), url("nysepic.jpg") center/cover no-repeat;
+            --about-fade: 0;
+            --about-shift: 0vh;
+            background: none;
+            background-color: var(--dark);
             color: var(--white);
-            padding: 4rem 0;
+            padding: 2.5rem 0;
+            min-height: 48vh;
             position: relative;
+            overflow: hidden;
+            transform: translateY(var(--about-shift));
+            transition: transform 260ms ease-out, min-height 260ms ease-out;
+            z-index: 2;
+            isolation: isolate;
+        }
+
+        .about::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url("nysepic.jpg") center/cover no-repeat;
+            transform: scaleY(0.78);
+            transform-origin: bottom;
+            transition: transform 240ms ease-out;
+            z-index: 0;
+        }
+
+        .about::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to bottom, rgba(0,0,0,var(--about-fade)) 0%, rgba(0,0,0,0) 35%),
+                linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+            transition: opacity 240ms ease-out;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .about.is-revealed {
+            --about-fade: 0.75;
+            min-height: 75vh;
+            --about-shift: -18vh;
+        }
+
+        .about.is-revealed::before {
+            transform: scaleY(1);
+        }
+
+        .about .container {
+            position: relative;
+            z-index: 2;
         }
         
         .about-text h3 {
@@ -937,8 +985,18 @@
 
         /* Additional Mobile Optimizations */
         @media (max-width: 768px) {
-            .about {
+            .about::before {
                 background-position: center;
+            }
+
+            .about {
+                min-height: 44vh;
+                padding: 2rem 0;
+            }
+
+            .about.is-revealed {
+                min-height: 65vh;
+                --about-shift: -12vh;
             }
 
             .hero {
@@ -1384,6 +1442,19 @@
                 }
             });
         });
+
+        const aboutSection = document.querySelector('.about');
+        if (aboutSection) {
+            const aboutSectionObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        aboutSection.classList.toggle('is-revealed', entry.isIntersecting);
+                    });
+                },
+                { threshold: 0.2 }
+            );
+            aboutSectionObserver.observe(aboutSection);
+        }
 
         let currentSlide = 0;
         const cards = document.querySelectorAll('.leadership-card');
