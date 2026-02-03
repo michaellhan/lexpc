@@ -990,13 +990,22 @@
             }
 
             .about {
-                min-height: 44vh;
+                --about-fade: 0;
+                min-height: auto;
                 padding: 2rem 0;
+                transform: none;
+                transition: none;
             }
 
             .about.is-revealed {
-                min-height: 65vh;
-                --about-shift: -12vh;
+                min-height: auto;
+                --about-shift: 0vh;
+            }
+
+            .about::before,
+            .about::after {
+                transition: none;
+                transform: none;
             }
 
             .hero {
@@ -1444,7 +1453,9 @@
         });
 
         const aboutSection = document.querySelector('.about');
-        if (aboutSection) {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const isMobileViewport = window.matchMedia('(max-width: 768px)').matches;
+        if (aboutSection && !prefersReducedMotion && !isMobileViewport) {
             const aboutSectionObserver = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
@@ -1454,6 +1465,8 @@
                 { threshold: 0.2 }
             );
             aboutSectionObserver.observe(aboutSection);
+        } else if (aboutSection) {
+            aboutSection.classList.remove('is-revealed');
         }
 
         let currentSlide = 0;
