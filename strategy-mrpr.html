@@ -224,6 +224,33 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.1);
             margin-bottom: 3rem;
         }
+
+        .strategy-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .nav-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            border: 1px solid var(--accent);
+            background-color: var(--white);
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background-color: var(--accent);
+            transform: translateY(-1px);
+        }
         
         .strategy-card:last-child {
             margin-bottom: 0;
@@ -396,6 +423,15 @@
             
             .strategy-card {
                 padding: 1.5rem;
+            }
+
+            .strategy-nav {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .strategy-nav .nav-button {
+                width: 100%;
             }
             
             .strategy-title {
@@ -619,6 +655,11 @@
                     <p>Positions are established through a systematic long/short portfolio with volatility-scaled position sizing and sector neutrality. Holdings are maintained over extended horizons to allow valuation reversion to materialize while minimizing transaction costs and short-term noise.</p>
                     <p>Risk is managed through dynamic exposure limits, periodic fundamental rebalancing, and drawdown controls, ensuring disciplined capital allocation across evolving market environments. By harvesting long-term risk premia embedded in equity valuation spreads, the strategy delivers stable macro-driven alpha over full market cycles.</p>
                 </div>
+            </div>
+
+            <div class="strategy-nav">
+                <a class="nav-button" href="strategies.html">Back to Strategies</a>
+                <a class="nav-button" href="strategy-mia.html">Next Strategy</a>
             </div>
         </div>
     </section>
